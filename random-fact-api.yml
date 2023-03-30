@@ -1,0 +1,185 @@
+openapi: 3.0.0
+info:
+  title: uselessfacts v2
+  description: Get Random Useless Facts
+  version: 1.0.0
+servers:
+  - url: https://uselessfacts.jsph.pl/api/v2
+tags:
+  - name: facts
+paths:
+  /facts/random:
+    get:
+      tags:
+        - facts
+      summary: Random Useless Fact
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: language
+          in: query
+          schema:
+            type: string
+          description: Desired language identifier
+          example: en
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 5ca2a61f05c5ff5ba6432ace47fa2636
+                text: >-
+                  The world`s record for keeping a Lifesaver in the mouth with
+                  the hole intact is 7 hrs 10 min.
+                source: djtech.net
+                source_url: http://www.djtech.net/humor/useless_facts.htm
+                language: en
+                permalink: >-
+                  https://uselessfacts.jsph.pl/api/v2/facts/5ca2a61f05c5ff5ba6432ace47fa2636
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: 500
+                code: server_error
+  /facts/today:
+    get:
+      tags:
+        - facts
+      summary: Today's Useless Fact
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: lanugage
+          in: query
+          schema:
+            type: string
+          description: Desired language identifier
+          example: en
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 69e0e143f4adafd23a7c216a6087c4ec
+                text: >-
+                  The name for Oz in the "Wizard of Oz" was thought up when the
+                  creator, Frank Baum, looked at his filing cabinet and saw A-N,
+                  and O-Z; hence the name "OZ."
+                source: djtech.net
+                source_url: http://www.djtech.net/humor/useless_facts.htm
+                language: en
+                permalink: >-
+                  https://uselessfacts.jsph.pl/api/v2/facts/69e0e143f4adafd23a7c216a6087c4ec
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: 500
+                code: server_error
+  /facts/{factId}:
+    get:
+      tags:
+        - facts
+      summary: Fact by ID
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: factId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The unique identifier of the fact
+          example: 02e2f0b72770afb2bb8c7ee21c2a7d00
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 02e2f0b72770afb2bb8c7ee21c2a7d00
+                text: >-
+                  In den 1970er Jahren gehörten Bierflaschen zur Ausstattung von
+                  Spielzeug-Sets mit Bauarbeitern der Marke Playmobil
+                source: Wikipedia
+                source_url: https://de.wikipedia.org/wiki/Bierflasche
+                language: de
+                permalink: >-
+                  https://uselessfacts.jsph.pl/api/v2/facts/02e2f0b72770afb2bb8c7ee21c2a7d00
+        '404':
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: 404
+                code: fact.unknown_id
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: 500
+                code: server_error
