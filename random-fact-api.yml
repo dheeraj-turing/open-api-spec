@@ -10,6 +10,8 @@ tags:
 paths:
   /facts/random:
     get:
+      operationId: getRandom
+      description: Endpoint fetches a random fact.
       tags:
         - facts
       summary: Random Useless Fact
@@ -63,6 +65,8 @@ paths:
                 code: server_error
   /facts/today:
     get:
+      operationId: getTodayFact
+      description: Endpoint fetches today's fact.
       tags:
         - facts
       summary: Today's Useless Fact
@@ -117,6 +121,8 @@ paths:
                 code: server_error
   /facts/{factId}:
     get:
+      operationId: getFactById
+      description: Endpoint fetches a fact by factId.
       tags:
         - facts
       summary: Fact by ID
