@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  title: Breaking Bad Quotes API
+  description: >-
+    # Breaking Bad quotes API
+
+
+    A simple API to retrieve some quotes of Breaking Bad, bitch!
+
+
+    🌐 Website and demo:
+    [https://breakingbadquotes.xyz/](https://breakingbadquotes.xyz/)
+  version: 1.0.0
+servers:
+  - url: https://api.breakingbadquotes.xyz
+paths:
+  /v1/quotes:
+    get:
+      operationId: getQuotes
+      tags:
+        - default
+      summary: Get one random quote
+      description: Get a random quote
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/quotes/{number}:
+    get:
+      operationId: getNumberOfQuotes
+      tags:
+        - default
+      summary: Get {{number}} random quotes
+      description: Returns an array with {number} quotes e.g. `GET /v1/quotes/5`.
+      parameters:
+        - name: number
+          in: path
+          schema:
+            type: string
+          required: true
+          description: Desired number of quotes. e.g. "5"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
