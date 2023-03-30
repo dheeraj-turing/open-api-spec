@@ -5,6 +5,10 @@ info:
   version: 1.0.0
 servers:
   - url: https://uselessfacts.jsph.pl/api/v2
+consumes:
+  - application/json
+produces:
+  - application/json
 tags:
   - name: facts
 paths:
@@ -20,6 +24,7 @@ paths:
           in: header
           schema:
             type: string
+          description: Currently supported are application/json (default)
           example: application/json
         - name: language
           in: query
@@ -75,6 +80,7 @@ paths:
           in: header
           schema:
             type: string
+          description: Currently supported are application/json (default)
           example: application/json
         - name: lanugage
           in: query
@@ -131,6 +137,7 @@ paths:
           in: header
           schema:
             type: string
+          description: Currently supported are application/json (default)
           example: application/json
         - name: factId
           in: path
