@@ -1,7 +1,9 @@
 openapi: 3.0.0
 info:
   title: uselessfacts v2
-  description: Get Random Useless Facts
+  description: |
+    Get Random Useless Facts.
+    Response can be in either JSON or plain text. Use the `Accept` header to choose one of "application/json" or "text/plain". Default is "application/json".
   version: 1.0.0
 servers:
   - url: https://uselessfacts.jsph.pl/api/v2
@@ -24,7 +26,6 @@ paths:
           in: header
           schema:
             type: string
-          description: Currently supported are application/json (default)
           example: application/json
         - name: language
           in: query
@@ -80,7 +81,6 @@ paths:
           in: header
           schema:
             type: string
-          description: Currently supported are application/json (default)
           example: application/json
         - name: lanugage
           in: query
@@ -137,7 +137,6 @@ paths:
           in: header
           schema:
             type: string
-          description: Currently supported are application/json (default)
           example: application/json
         - name: factId
           in: path
