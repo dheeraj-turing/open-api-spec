@@ -2,7 +2,8 @@ openapi: 3.0.0
 info:
   title: uselessfacts v2
   description: |
-    Get Random Useless Facts. You can change language parameter to get fact in different language. Default is "en".
+    Get Random Useless Facts. You can change language parameter to get fact in different language. Default is "en". |
+    Refer https://en.wikipedia.org/wiki/ISO_639-1 for language code
   version: 1.0.0
 servers:
   - url: https://uselessfacts.jsph.pl/api/v2
@@ -21,7 +22,7 @@ paths:
           in: query
           schema:
             type: string
-          description: Desired language identifier
+          description: Desired language ISO 639-1 code
           example: en
       responses:
         '200':
@@ -67,11 +68,11 @@ paths:
         - facts
       summary: Today's Useless Fact
       parameters:
-        - name: lanugage
+        - name: language
           in: query
           schema:
             type: string
-          description: Desired language identifier
+          description: Desired language ISO 639-1 code
           example: en
       responses:
         '200':
