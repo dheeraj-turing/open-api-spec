@@ -1,0 +1,130 @@
+openapi: 3.0.0
+info:
+  title: Indian Postal PIN Code API
+  description: |
+    To get details of a Indian PIN Code or get details of a Post Office Branch by Name. Visit http://www.postalpincode.in/Api-Details for more information.
+  version: 1.0.0
+servers:
+  - url: https://api.postalpincode.in
+
+paths:
+  /pincode/{pincode}:
+    get:
+      operationId: searchByPinCode
+      description: Endpoint fetches details of a Pin code.
+      tags:
+        - Pin code
+      summary: Get information of a Pin code
+      parameters:
+        - name: pincode
+          in: path
+          schema:
+            type: string
+          required: true
+          description: Pin code to get information
+          example: 311001
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                Message: Number of pincode(s) found:11
+                Status: Success
+                PostOffice: [
+                            {
+                              Name: Azad Nagar (Bhilwara),
+                              Description: null,
+                              BranchType: Sub Post Office,
+                              DeliveryStatus: Non-Delivery,
+                              Circle: Rajasthan,
+                              District: Bhilwara,
+                              Division: Bhilwara,
+                              Region: Ajmer,
+                              Block: NA,
+                              State: Rajasthan,
+                              Country: India,
+                              Pincode: 311001
+                            }]
+        '404':
+          description: Not found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                Message: No records found
+                Status: Error
+                PostOffice: null
+  /postoffice/{postOfficeBranchName}:
+    get:
+      operationId: searchByPostOfficeBranch
+      description: Endpoint fetches information by post office branch name.
+      tags:
+        - Post office
+      summary: Get Post office branch detail by name
+      parameters:
+        - name: postOfficeBranchName
+          in: path
+          schema:
+            type: string
+          required: true
+          description: Post Office Branch Name
+          example: Bhilwara
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                Message: Number of Post office(s) found:14
+                Status: Success
+                PostOffice: [
+                            {
+                              Name: Azad Nagar (Bhilwara),
+                              Description: null,
+                              BranchType: Sub Post Office,
+                              DeliveryStatus: Non-Delivery,
+                              Circle: Rajasthan,
+                              District: Bhilwara,
+                              Division: Bhilwara,
+                              Region: Ajmer,
+                              Block: NA,
+                              State: Rajasthan,
+                              Country: India,
+                              Pincode: 311001
+                            }]
+        '404':
+          description: Not found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                Message: No records found
+                Status: Error
+                PostOffice: null
